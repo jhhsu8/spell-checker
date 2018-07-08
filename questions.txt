@@ -1,0 +1,32 @@
+0.  What is pneumonoultramicroscopicsilicovolcanoconiosis?
+Pneumonoultramicroscopicsilicovolcanoconiosis is a lung disease caused by silica dust.
+
+1.  According to its man page, what does getrusage do?
+The getrusage function returns information about the resource usage of a process,
+such as the amount of memory used and time spent executing user instructions.
+
+2.  Per that same man page, how many members are in a variable of type struct rusage?
+There are 16 members in a variable of type struct rusage.
+
+3.  Why do you think we pass before and after by reference (instead of by value) to calculate, 
+even though we’re not changing their contents?
+A pointer to each one of them is passed to calculate(). If we pass them by value, 
+it will be a waste of time and memory space.
+
+4.  After the text file and the dictionary are loaded, the main() function reads the 
+text character-by-character, and these characters are appended to the word. If the word has 
+numbers, or it is too long, this word won’t be checked for misspellings. When the word 
+index is greater than 0, the word is terminated and checked for misspellings, and
+index is reset to zero. The whole process is repeated for the next word. 
+
+5.  fgetc() reads character-by-character from a stream and keeps track of the number of chars.
+fscanf() could cause problems if used to read in because words in that file will not always end 
+with a space or line return. 
+ 
+6.  The const specifies that these parameters' values are constant and tells the compiler 
+to prevent us from modifying them.
+
+7.  I used hash table to implement the spell-checker.  The SDBM Hash Function takes in a string value
+and returns a non-negative integer value called a hash code that represents the hash array location
+pointing to a linked list.  In a linked list, each node contains the string value and the address of 
+the next node.
