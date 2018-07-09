@@ -12,7 +12,6 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
-
 #include "dictionary.h"
 
 #define SIZE 200000
@@ -24,7 +23,6 @@ typedef struct node
 {
     char word[LENGTH + 1];   
     struct node* next;
-    
 } link;
 
 // SDBM Hash Function from http://snipplr.com/view/55639/hashing-function-for-c  
@@ -49,10 +47,8 @@ int count = 0;
 /**
  * Returns true if word is in dictionary else false.
  */
- 
 bool check(const char* word)
 {   
-    
     //Create a lowercase copy of the word.
     int len = strlen(word);
     char copy[LENGTH + 1];
@@ -75,16 +71,12 @@ bool check(const char* word)
         {
             //return true if the copy and word are the same.
             return true;
-            
         }
         
         //increment the pointer variable.
         ptr = ptr-> next;
-        
     }
-    
     return false;
-    
 }
 
 /**
@@ -115,8 +107,7 @@ bool load(const char* dictionary)
         //if the node does not exist, return false.
         if (temp == NULL)
         {
-            return false;
-            
+            return false; 
         }
         
         //Copy the string into the node, including the terminating null character. 
@@ -126,7 +117,6 @@ bool load(const char* dictionary)
         int hashIndex = hashFunc(temp->word);
         
         if(hashArray[hashIndex]==NULL)
-    
         {
             //the hash array pointing to the 1st node.
             hashArray[hashIndex] = temp;
@@ -134,9 +124,7 @@ bool load(const char* dictionary)
             //count the number of words loaded.
             count ++;
         }
-        
         else
-        
         {
             //the 2nd node pointing to the 1st node. 
             temp->next = hashArray[hashIndex];
@@ -145,53 +133,36 @@ bool load(const char* dictionary)
             hashArray[hashIndex] = temp;
             
             //count the number of words loaded.
-            count ++;
-            
-        }
-        
+            count ++;  
+        }  
     }
-    
     //close the dictionary file.
-    
     fclose(input);
-    
+
      //if the hash array is not null, return true, else false.
     for (int index = 0; index < SIZE; index++ )
     {  
         if (hashArray[index] != NULL)
-        
         {
-            return true;
-            
+            return true; 
         }
-        
     }
-    
     return false;
-    
 }
-
 /**
  * Returns number of words in dictionary if loaded else 0 if not yet loaded.
  */
 unsigned int size(void)
 {
- 
     for (int index = 0; index < SIZE; index++)
-    {
-        
+    { 
         if (hashArray[index] != NULL)
         {
-            return count;
-            
+            return count; 
         }
-        
     }
-    
     return 0;
-    
 }
-
 /**
  * Unloads dictionary from memory.  Returns true if successful else false.
  */
@@ -211,19 +182,13 @@ bool unload(void)
             //deallocate the memory of the 1st node.
             free(temp);
             temp = NULL;
-            
         }
         
         //if the hash array is not null, return false, else true.
         if (hashArray[index] != NULL)
-        
         {
-            return false;
-            
-        } 
-        
+            return false;    
+        }   
     }
-    
     return true;
-    
 }
